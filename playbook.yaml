@@ -4,7 +4,7 @@
   gather_facts: false
   vars:
     repo_folder: /tmp/app/
-    repo_name: namesjc/getting-started
+    repo_name: nameschenjun/getting-started
 
   tasks:
     - import_tasks: install-docker.yaml
