@@ -2,9 +2,14 @@
 - hosts: app01
   # become: true
   gather_facts: false
+  # environment:
+  #   http_proxy: http://127.0.0.1:3128
+  #   https_proxy: http://127.0.0.1:3128
   vars:
     repo_folder: /tmp/app/
     repo_name: nameschenjun/getting-started
+  vars_files:
+    - vault
 
   tasks:
     - import_tasks: install-docker.yaml
@@ -17,7 +22,7 @@
 
     - name: Clone source from git
       git:
-        repo: https://github.com/{{ repo_name }}.git
+        repo: https://{{ github_username }}:{{ github_access_token }}@github.com/{{ repo_name }}.git
         dest: "{{ repo_folder }}"
         update: yes
 
@@ -54,7 +59,7 @@
                 - "{{ hostvars[inventory_hostname].app_port }}:3000"
               working_dir: /app
               environment:
-                MYSQL_HOST: mysql
+                MYSQL_HOST: db
                 MYSQL_USER: root
                 MYSQL_PASSWORD: secret
                 MYSQL_DB: todos

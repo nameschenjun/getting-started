@@ -28,7 +28,7 @@
     update_cache: yes
 
 - name: add userpermissions
-  shell: "usermod -aG docker ubuntu"
+  shell: "usermod -aG docker marco"
 
 # Installs Docker SDK
 # --
@@ -38,7 +38,7 @@
     name: python3-pip
 
 - name: install python sdk
-  become_user: ubuntu
+  become_user: marco
   pip:
     name:
       - docker
