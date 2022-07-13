@@ -1,0 +1,14 @@
+[app01]
+localhost
+
+[app:children]
+app01
+
+[app:vars]
+ansible_user=ubuntu
+ansible_python_interpreter=/usr/bin/python3
+app_port=3000
+
+
+
+
